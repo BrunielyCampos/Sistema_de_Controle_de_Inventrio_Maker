@@ -1,5 +1,5 @@
-#ifndef ITEM_HPP
-#define ITEM_HPP
+#ifndef ITENS_HPP
+#define ITENS_HPP
 
 #include <string>
 #include <iostream>
@@ -18,20 +18,16 @@ private:
     FilaDeEspera filaEspera; 
 
 public:
-    
     Itens();
     Itens(int id, string nome, string cat, string loc, int qtd, string cond);
 
-    
     int getId() const;
     string getNome() const;
     string getCategoria() const;
     int getQuantidade() const;
 
-    // Métodos de Negócio
     bool solicitarItem(Usuario u);
     void devolverItem();
     void imprimirDetalhes();
 };
-
 #endif
