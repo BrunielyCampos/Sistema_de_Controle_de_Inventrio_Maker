@@ -4,10 +4,8 @@
 using namespace std;
 
 Usuario::Usuario(const string& cpf, const string& nome, 
-                const string& matricula, TipoUsuario tipo)
-    : cpf(cpf), nome(nome), matricula(matricula), tipo(tipo) {
-
-    }
+                 const string& matricula, TipoUsuario tipo)
+                 :cpf(cpf), nome(nome), matricula(matricula), tipo(tipo){}
 
 
 string Usuario::getCPF() const {

@@ -6,10 +6,12 @@
 
 using namespace std;
 
-class FilaDeColisoes {
-private:
-
-public:
+class FilaDeColisoes{
+    private:
     
+    public:
+    
+};
+#endif
 
     

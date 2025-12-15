@@ -1,16 +1,17 @@
 #include "TabelaHash.hpp"
 #include <iostream>
-
 using namespace std;
 
-// --- MÉTODOS AUXILIARES ---
-
-bool TabelaHash::ehPrimo(int n) {
-    if (n <= 1) return false;
-    for (int i = 2; i * i <= n; i++) {
-        if (n % i == 0) return false;
+bool TabelaHash::ehPrimo(int n){
+    if (n <= 1){
+        return false;
     }
-    return true;
+    for (int i = 2; i * i <= n; i++) {
+        if(n % i == 0){
+            return false;
+        }
+        return true;
+    }
 }
 
 int TabelaHash::proximoPrimo(int n) {
@@ -27,6 +28,7 @@ int TabelaHash::funcaoHash(int chave) {
 TabelaHash::TabelaHash(int tamInicial) {
     tamanho = proximoPrimo(tamInicial);
     quantidadeItens = 0;
+    int tabela;
     
     // Aloca o array de ponteiros
     tabela = new NoTabela*[tamanho];
