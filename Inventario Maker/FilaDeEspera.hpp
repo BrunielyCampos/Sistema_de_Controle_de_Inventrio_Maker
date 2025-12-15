@@ -1,7 +1,8 @@
+#include "Itens.hpp"
+
 #ifndef FILADEESPERA_HPP
 #define FILADEESPERA_HPP
 
-#include "Itens.hpp"
 
 struct NoItem {
     Itens* item;

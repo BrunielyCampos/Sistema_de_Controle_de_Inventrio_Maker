@@ -3,7 +3,7 @@
 
 #include <string>
 #include <iostream>
-#include "FilaDeColisoes.hpp"
+#include "FilaDeEspera.hpp"
 #include "Usuario.hpp"
 
 using namespace std;
@@ -15,7 +15,7 @@ private:
     string localizacao;
     int quantidade;
     string condicao;  
-    FilaDeColisoes filaEspera; 
+    FilaDeEspera filaEspera; 
 
 public:
     
