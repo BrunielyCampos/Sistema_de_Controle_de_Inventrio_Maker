@@ -5,8 +5,8 @@ FilaDeEspera::FilaDeEspera() {
     inicio = NULL;
     fim = NULL;
 }
-public:
-   FilaDeEspera::~FilaDeEspera() {
+
+FilaDeEspera::~FilaDeEspera() {
     while (inicio != NULL) {
         NoItem* temp = inicio;
         inicio = inicio->proximo;
@@ -41,7 +41,3 @@ Itens* FilaDeEspera::removerDoInicio() {
 bool FilaDeEspera::EstaCheio() const {
     return fim != NULL;
 }
-
-
-
-
