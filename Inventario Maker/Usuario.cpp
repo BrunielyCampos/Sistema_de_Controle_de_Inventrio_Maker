@@ -20,7 +20,7 @@ string Usuario::getMatricula() const {
     return matricula;
 }
 
-Usuario::TipoUsuario Usuario::getTipo() const {
+TipoUsuario Usuario::getTipo() const {
     return tipo;
 }
 
