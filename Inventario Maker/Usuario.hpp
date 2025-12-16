@@ -6,14 +6,12 @@
 
 using namespace std;
 
-class Usuario {
-public:
-   
-    enum class TipoUsuario {
+enum class TipoUsuario {
         ALUNO,
         DOCENTE
-    };
+};
 
+class Usuario {    
 private:
     string cpf;
     string nome;
