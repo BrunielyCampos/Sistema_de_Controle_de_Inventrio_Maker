@@ -16,14 +16,13 @@ private:
 
 public:
     FilaDeEspera();
-    // Importante: Construtor de Cópia para o Rehash funcionar
     FilaDeEspera(const FilaDeEspera& outra); 
     ~FilaDeEspera();
 
-    void inserir(Usuario* u); // Renomeado para bater com seu uso em Itens
-    Usuario* remover();       // Renomeado
+    void inserir(Usuario* u);
+    Usuario* remover();       
     bool vazia() const;
-    bool estaCheio() const;   // Filas dinâmicas raramente enchem, mas mantive
+    bool estaCheio() const;
     void imprimir() const;
 };
 

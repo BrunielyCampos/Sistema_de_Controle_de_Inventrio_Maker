@@ -28,12 +28,11 @@ public:
     ~TabelaHash();
 
     void inserir(const Itens& novoItem);
-    // Retorna um ponteiro para o item (ou nullptr se não encontrado)
-    // Permite manipulação direta do item (solicitar/devolver)
+  
     Itens* buscar(int id);
     bool remover(int id);
     void listarPorCategoria(string categoria);
-    void imprimirTabela(); // Para debug
+    void imprimirTabela(); 
 };
 
 #endif

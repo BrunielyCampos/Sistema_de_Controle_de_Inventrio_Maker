@@ -6,7 +6,7 @@ using namespace std;
 
 void imprimirTituloSeção(string titulo){
     cout<<"=========================================="<<endl;
-    cout<< <<endl;
+    cout<< titulo <<endl;
     cout<<"=========================================="<<endl;
     
 }
@@ -52,6 +52,17 @@ int main() {
     cout << "\n=== TODOS OS ITENS ===" << endl;
     inventario.imprimirTabela();
 
+
+    cout<<"SEÇÃO DE DEMONSTRAÇÃO DAS FUNCIONALIDADES DE: \n";
+    cout<<"     REHASH E TRATAMENTO DE COLISÕES"<<endl;
+
+    TabelaHash tabelaTeste(7);
+
+    imprimirTituloSeção("=== Demonstração de Colisão: ===");
+
+    cout<<"Inserindo o Display Digital com o ID(7) com o modulo =  (Hash: 7 % 7 = 0)";
+
+    tabelaTeste.inserir(Itens(7, "Display Digital", "Eletronica", "Armario B", 2,  ))
 
 
     
