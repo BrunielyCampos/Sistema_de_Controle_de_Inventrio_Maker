@@ -1,102 +1,113 @@
 #include "TabelaHash.hpp"
 #include <iostream>
+#include <iomanip>
+
 using namespace std;
 
-bool TabelaHash::ehPrimo(int n){
-    if (n <= 1){
-        return false;
+// Verifica se um número é primo
+bool TabelaHash::ehPrimo(int n) const {
+    if (n <= 1) return false;
+    if (n == 2) return true;
+    if (n % 2 == 0) return false;
+    
+    for (int i = 3; i * i <= n; i += 2) {
+        if (n % i == 0) return false;
     }
-    for (int i = 2; i * i <= n; i++) {
-        if(n % i == 0){
-            return false;
+    return true;
+}
+
+// Encontra o próximo número primo maior ou igual a n
+int TabelaHash::proximoPrimo(int n) const {
+    if (n <= 1) return 2;
+    
+    int primo = n;
+    bool encontrou = false;
+    
+    while (!encontrou) {
+        primo++;
+        if (ehPrimo(primo)) {
+            encontrou = true;
         }
-        return true;
     }
+    return primo;
 }
 
-int TabelaHash::proximoPrimo(int n) {
-    while (!ehPrimo(n)) n++;
-    return n;
-}
-
-int TabelaHash::funcaoHash(int chave) {
+// Função hash simples que retorna o resto da divisão da chave pelo tamanho da tabela
+int TabelaHash::funcaoHash(int chave) const {
     return chave % tamanho;
 }
 
-// --- CONSTRUTOR E DESTRUTOR ---
-
+// Construtor: inicializa a tabela com um tamanho inicial
 TabelaHash::TabelaHash(int tamInicial) {
-    tamanho = proximoPrimo(tamInicial);
+    tamanho = tamInicial;
     quantidadeItens = 0;
-    int tabela;
+    
+    // Garante que o tamanho seja um número primo
+    if (!ehPrimo(tamanho)) {
+        tamanho = proximoPrimo(tamanho);
+    }
     
     // Aloca o array de ponteiros
     tabela = new NoTabela*[tamanho];
     
-    // Inicializa tudo com nullptr (listas vazias)
+    // Inicializa todos os ponteiros como nullptr
     for (int i = 0; i < tamanho; i++) {
         tabela[i] = nullptr;
     }
 }
 
+// Destrutor: libera toda a memória alocada
 TabelaHash::~TabelaHash() {
     for (int i = 0; i < tamanho; i++) {
         NoTabela* atual = tabela[i];
         while (atual != nullptr) {
-            NoTabela* remover = atual;
-            atual = atual->proximo;
-            delete remover;
+            NoTabela* proximo = atual->proximo;
+            delete atual;
+            atual = proximo;
         }
     }
     delete[] tabela;
 }
 
-// --- REHASHING (A Parte Complexa e Importante) ---
-
+// Aumenta o tamanho da tabela quando o fator de carga é excedido
 void TabelaHash::rehash() {
-    int tamanhoAntigo = tamanho;
     int novoTamanho = proximoPrimo(tamanho * 2);
+    NoTabela** novaTabela = new NoTabela*[novoTamanho];
     
-    cout << "\n[SISTEMA] Fator de carga excedido. Realizando Rehashing..." << endl;
-    cout << "          Tamanho antigo: " << tamanhoAntigo << " -> Novo: " << novoTamanho << endl;
-
-    // Salva a tabela antiga
-    NoTabela** tabelaAntiga = tabela;
-
-    // Cria a nova tabela
-    tabela = new NoTabela*[novoTamanho];
+    // Inicializa a nova tabela
     for (int i = 0; i < novoTamanho; i++) {
-        tabela[i] = nullptr;
+        novaTabela[i] = nullptr;
     }
-
-    // Atualiza o tamanho e reseta a contagem (será recontada no inserir)
+    
+    int tamanhoAntigo = tamanho;
+    NoTabela** tabelaAntiga = tabela;
+    
+    // Atualiza os parâmetros da tabela
     tamanho = novoTamanho;
+    tabela = novaTabela;
     quantidadeItens = 0;
-
-    // Transfere os itens
+    
+    // Reinsere todos os itens na nova tabela
     for (int i = 0; i < tamanhoAntigo; i++) {
         NoTabela* atual = tabelaAntiga[i];
         while (atual != nullptr) {
-            // Insere na nova tabela (vai recalcular o hash com o novo tamanho)
-            inserir(atual->item); 
-            
+            inserir(atual->item);
             NoTabela* temp = atual;
             atual = atual->proximo;
-            delete temp; // Deleta o nó antigo (o item foi copiado para o novo nó)
+            delete temp;
         }
     }
-    delete[] tabelaAntiga; // Deleta o vetor antigo
+    
+    delete[] tabelaAntiga;
 }
 
-// --- OPERAÇÕES PRINCIPAIS ---
-
-void TabelaHash::inserir(Item novoItem) {
-    // 1. Verifica fator de carga antes de inserir
-    float carga = (float)quantidadeItens / tamanho;
-    if (carga > FATOR_CARGA_LIMITE) {
+// Insere um novo item na tabela
+void TabelaHash::inserir(const Itens& novoItem) {
+    // Verifica se é necessário fazer rehashing
+    if ((float)quantidadeItens / tamanho > FATOR_CARGA_LIMITE) {
         rehash();
     }
-
+    
     int indice = funcaoHash(novoItem.getId());
     
     // Verifica se já existe (atualização ou erro) - Opcional, aqui vamos assumir inserção direta

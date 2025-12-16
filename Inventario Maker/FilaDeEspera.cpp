@@ -7,36 +7,38 @@ FilaDeEspera::FilaDeEspera() {
 }
 
 FilaDeEspera::~FilaDeEspera() {
-    while (inicio != NULL) {
-        NoItem* temp = inicio;
+   while (inicio != NULL) {
+        NoUsuario* temp = inicio;
         inicio = inicio->proximo;
         delete temp;
     }
 }
 
-void FilaDeEspera::inserirNoFim(Itens* item) {
-    NoItem* novoItem = new NoItem;
-    novoItem->item = item;
-    novoItem->proximo = NULL;
+void FilaDeEspera::inserirNoFim(Usuario* Usuario) {
+    NoUsuario* novoUsuario = new NoUsuario();
+    novoUsuario->usuario = Usuario;
+    novoUsuario->proximo = NULL;
+
     if (fim == NULL) {
-        inicio = novoItem;
-        fim = novoItem;
+        inicio = novoUsuario;
+        fim = novoUsuario;
     } else {
-        fim->proximo = novoItem;
-        fim = novoItem;
+        fim->proximo = novoUsuario;
+        fim = novoUsuario;
     }
+    
 }
 
-Itens* FilaDeEspera::removerDoInicio() {
+    Usuario* FilaDeEspera::removerDoInicio() {
     if (inicio == NULL) {
         return NULL;
     }
-    NoItem* temp = inicio;
-    Itens* item = temp->item;
+    NoUsuario* temp = inicio;
+    Usuario* Usuario = temp->usuario;
     inicio = inicio->proximo;
     delete temp;
-    return item;
-}
+    return Usuario;
+    }   
 
 bool FilaDeEspera::EstaCheio() const {
     return fim != NULL;

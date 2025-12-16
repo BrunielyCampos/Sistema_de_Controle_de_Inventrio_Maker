@@ -10,7 +10,8 @@ using namespace std;
 
 class Itens {
 private:
-    int id;                
+    int id;  
+    string nome;              
     string categoria;
     string localizacao;
     int quantidade;
@@ -20,11 +21,15 @@ private:
 public:
     Itens();
     Itens(int id, string nome, string cat, string loc, int qtd, string cond);
+    ~Itens();
 
     int getId() const;
     string getNome() const;
     string getCategoria() const;
     int getQuantidade() const;
+    string getCondicao() const;
+    FilaDeEspera getFilaEspera() const;
+    
 
     bool solicitarItem(Usuario u);
     void devolverItem();

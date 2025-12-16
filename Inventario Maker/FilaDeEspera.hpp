@@ -1,26 +1,28 @@
-#include "Itens.hpp"
+#include "Usuario.hpp"
 
 #ifndef FILADEESPERA_HPP
 #define FILADEESPERA_HPP
 
-
-struct NoItem {
-    Itens* item;
-    NoItem* proximo;
+struct NoUsuario {
+    Usuario* usuario;
+    NoUsuario* proximo;
 };
 
 class FilaDeEspera {
+    
 private:
-    NoItem* inicio;
-    NoItem* fim;
+    NoUsuario* inicio;
+    NoUsuario* fim;
 
 public:
     FilaDeEspera();
     ~FilaDeEspera();
 
-    void inserirNoFim(Itens* item);
-    Itens* removerDoInicio();
+    void inserirNoFim(Usuario* usuario);
+    Usuario* removerDoInicio();
     bool EstaCheio() const;
+    bool EstaVazio() const;
+    void imprimirFila();
 };
 
 #endif
