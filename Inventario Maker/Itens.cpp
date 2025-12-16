@@ -5,7 +5,7 @@
 using namespace std;
 
     Itens::Itens(){
-
+        
     }
     Itens::Itens(int id, string nome, string cat, string loc, int qtd, string cond){
         this->id = id;
@@ -43,7 +43,7 @@ using namespace std;
             quantidade--;
             return true;
         } else {
-            // Adiciona à fila de espera se não houver itens disponíveis
+            
             filaEspera.inserir(u);
             return false;
         }

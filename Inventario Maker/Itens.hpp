@@ -30,7 +30,6 @@ public:
     string getCondicao() const;
     FilaDeEspera getFilaEspera() const;
     
-
     bool solicitarItem(Usuario u);
     void devolverItem();
     void imprimirDetalhes();
