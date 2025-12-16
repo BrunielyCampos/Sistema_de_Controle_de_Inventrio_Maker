@@ -2,39 +2,27 @@
 #define USUARIO_HPP
 
 #include <string>
-#include <iostream>
 
 using namespace std;
 
-enum class TipoUsuario {
-        ALUNO,
-        DOCENTE
-};
+enum TipoUsuario { ALUNO, DOCENTE };
 
-class Usuario {    
+class Usuario {
 private:
     string cpf;
     string nome;
     string matricula;
     TipoUsuario tipo;
-    
+
 public:
-  
-    Usuario(const string& cpf, const string& nome, 
-           const string& matricula, TipoUsuario tipo);
+    Usuario() {} // Construtor vazio necessário para arrays/nós
+    Usuario(const string& cpf, const string& nome, const string& matricula, TipoUsuario tipo);
 
     string getCPF() const;
     string getNome() const;
     string getMatricula() const;
     TipoUsuario getTipo() const;
     string getTipoString() const;
-    
-
-    void setCPF(const string& novoCPF);
-    void setNome(const string& novoNome);
-    void setMatricula(const string& novaMatricula);
-    void setTipo(TipoUsuario novoTipo);
-
 };
 
-#endif 
+#endif

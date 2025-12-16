@@ -4,19 +4,18 @@
 #include <string>
 #include <iostream>
 #include "FilaDeEspera.hpp"
-#include "Usuario.hpp"
 
 using namespace std;
 
 class Itens {
 private:
-    int id;  
-    string nome;              
+    int id;
+    string nome;
     string categoria;
     string localizacao;
     int quantidade;
-    string condicao;  
-    FilaDeEspera filaEspera; 
+    string condicao;
+    FilaDeEspera filaEspera;
 
 public:
     Itens();
@@ -28,10 +27,14 @@ public:
     string getCategoria() const;
     int getQuantidade() const;
     string getCondicao() const;
-    FilaDeEspera getFilaEspera() const;
     
-    bool solicitarItem(Usuario u);
+    // Retorna referência para podermos ver a fila sem copiar
+    const FilaDeEspera& getFilaEspera() const;
+
+    // Métodos de negócio
+    bool solicitarItem(Usuario* u); // Recebe ponteiro
     void devolverItem();
     void imprimirDetalhes();
 };
+
 #endif

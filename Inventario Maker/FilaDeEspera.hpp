@@ -1,28 +1,30 @@
-#include "Usuario.hpp"
-
 #ifndef FILADEESPERA_HPP
 #define FILADEESPERA_HPP
 
+#include "Usuario.hpp"
+#include <iostream>
+
 struct NoUsuario {
-    Usuario* usuario;
+    Usuario* usuario; // Ponteiro para o usuário (agregacao)
     NoUsuario* proximo;
 };
 
 class FilaDeEspera {
-    
 private:
     NoUsuario* inicio;
     NoUsuario* fim;
 
 public:
     FilaDeEspera();
+    // Importante: Construtor de Cópia para o Rehash funcionar
+    FilaDeEspera(const FilaDeEspera& outra); 
     ~FilaDeEspera();
 
-    void inserirNoFim(Usuario* usuario);
-    Usuario* removerDoInicio();
-    bool EstaCheio() const;
-    bool EstaVazio() const;
-    void imprimirFila();
+    void inserir(Usuario* u); // Renomeado para bater com seu uso em Itens
+    Usuario* remover();       // Renomeado
+    bool vazia() const;
+    bool estaCheio() const;   // Filas dinâmicas raramente enchem, mas mantive
+    void imprimir() const;
 };
 
 #endif
