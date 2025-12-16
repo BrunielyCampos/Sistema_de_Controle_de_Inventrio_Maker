@@ -143,7 +143,7 @@ void TabelaHash::listarPorCategoria(string categoria) {
         NoTabela* atual = tabela[i];
         while (atual != NULL) {
             if (atual->item.getCategoria() == categoria) {
-                atual->item.imprimirDetalhes();
+                atual->item.imprimir();
                 achou = true;
             }
             atual = atual->proximo;

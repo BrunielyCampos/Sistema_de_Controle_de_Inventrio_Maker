@@ -34,7 +34,7 @@ public:
     // Métodos de negócio
     bool solicitarItem(Usuario* u); // Recebe ponteiro
     void devolverItem();
-    void imprimirDetalhes();
+    void imprimir();
 };
 
 #endif

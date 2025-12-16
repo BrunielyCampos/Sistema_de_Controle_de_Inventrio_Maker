@@ -5,7 +5,7 @@
 #include <iostream>
 
 struct NoUsuario {
-    Usuario* usuario; // Ponteiro para o usuário (agregacao)
+    Usuario* usuario; 
     NoUsuario* proximo;
 };
 
