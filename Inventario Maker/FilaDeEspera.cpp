@@ -5,7 +5,7 @@ FilaDeEspera::FilaDeEspera() {
     fim = NULL;
 }
 
-// Construtor de Cópia (Deep Copy) - ESSENCIAL PARA O REHASH
+
 FilaDeEspera::FilaDeEspera(const FilaDeEspera& outra) {
     inicio = NULL;
     fim = NULL;
@@ -20,7 +20,7 @@ FilaDeEspera::~FilaDeEspera() {
     while (inicio != NULL) {
         NoUsuario* temp = inicio;
         inicio = inicio->proximo;
-        delete temp; // Deleta o nó, mas não o Usuario (pois é agregação)
+        delete temp;
     }
 }
 
@@ -56,7 +56,7 @@ bool FilaDeEspera::vazia() const {
 }
 
 bool FilaDeEspera::estaCheio() const {
-    return false; // Como é lista encadeada, só enche se acabar a RAM
+    return false; 
 }
 
 void FilaDeEspera::imprimir() const {

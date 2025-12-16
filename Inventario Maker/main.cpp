@@ -52,17 +52,40 @@ int main() {
     cout << "\n=== TODOS OS ITENS ===" << endl;
     inventario.imprimirTabela();
 
-
-    cout<<"SEÇÃO DE DEMONSTRAÇÃO DAS FUNCIONALIDADES DE: \n";
-    cout<<"     REHASH E TRATAMENTO DE COLISÕES"<<endl;
+    cout<<"\n\n##### Criando uma Nova Tabela: TabelaTeste..... #####";
+    cout<<"\n\n";
 
     TabelaHash tabelaTeste(7);
 
-    imprimirTituloSeção("=== Demonstração de Colisão: ===");
+  
 
-    cout<<"Inserindo o Display Digital com o ID(7) com o modulo =  (Hash: 7 % 7 = 0)";
+    imprimirTituloSeção("=== Demonstracao de Colisao: ===");
 
-    tabelaTeste.inserir(Itens(7, "Display Digital", "Eletronica", "Armario B", 2,  ))
+    cout<<"Inserindo o Display Digital com o ID(7) com o modulo =  (Hash: 7 % 7 = 0)"<<endl;
+
+    tabelaTeste.inserir(Itens(7, "Display Digital", "Eletronica", "Armario B", 2, "Novo"));
+
+    cout<<"\n";
+
+    cout<<"Inserindo o Display Digital com o ID(14) com o modulo =  (Hash: 14 % 7 = 0)"<<endl;
+
+    tabelaTeste.inserir(Itens(14, "Display Digital", "Eletronica", "Armario B", 2, "Usado"));
+
+    cout<<"\n";
+
+    cout<<"### Exibindo a colisao: ####";
+    tabelaTeste.imprimirTabela();
+
+    cout<<"\n";
+
+    imprimirTituloSeção("Demonstracao do Funcionamento do REHASH");
+    tabelaTeste.inserir(Itens(13, "Kit Braco Robotico Arduino", "Eletronica", "Armario C", 2, "Usado"));
+    tabelaTeste.inserir(Itens(16, "Multrimetro", "Eletronica", "Armario B", 1, "Usado"));
+    tabelaTeste.inserir(Itens(15, "Impressora termica", "Eletronica", "Armario D", 1, "Usado"));
+    tabelaTeste.inserir(Itens(11, "Placa Raspberry Pi 4", "Eletronica", "Armario D", 1, "Usado"));
+    tabelaTeste.inserir(Itens(12, "Cortadora a Laser CO2", "Eletronica", "Armario B", 1, "Novo"));
+    cout<<"Tabela Redimencionada: "<<endl;
+    tabelaTeste.imprimirTabela();
 
 
     

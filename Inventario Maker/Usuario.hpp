@@ -15,9 +15,8 @@ private:
     TipoUsuario tipo;
 
 public:
-    Usuario() {} // Construtor vazio necessário para arrays/nós
+    Usuario();
     Usuario(const string& cpf, const string& nome, const string& matricula, TipoUsuario tipo);
-
     string getCPF() const;
     string getNome() const;
     string getMatricula() const;

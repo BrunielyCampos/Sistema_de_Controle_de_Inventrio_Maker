@@ -60,12 +60,12 @@ void TabelaHash::rehash() {
     tabela = new NoTabela*[tamanho];
     for (int i = 0; i < tamanho; i++) tabela[i] = NULL;
     
-    quantidadeItens = 0; // Será incrementado no inserir
+    quantidadeItens = 0; 
 
     for (int i = 0; i < tamanhoAntigo; i++) {
         NoTabela* atual = tabelaAntiga[i];
         while (atual != NULL) {
-            inserir(atual->item); // Isso usa o construtor de cópia do Item e da Fila
+            inserir(atual->item);
             NoTabela* temp = atual;
             atual = atual->proximo;
             delete temp;
@@ -76,8 +76,6 @@ void TabelaHash::rehash() {
 }
 
 void TabelaHash::inserir(const Itens& novoItem) {
-    // Insere sem checar carga primeiro para evitar recursão infinita no rehash
-    // Mas num uso normal, checamos antes
     
     int indice = funcaoHash(novoItem.getId());
     
@@ -100,8 +98,6 @@ void TabelaHash::inserir(const Itens& novoItem) {
     }
 }
 
-// Retorna um ponteiro para o item (ou nullptr se não encontrado)
-// Permite manipulação direta do item (solicitar/devolver)
 Itens* TabelaHash::buscar(int id) {
     int indice = funcaoHash(id);
     NoTabela* atual = tabela[indice];

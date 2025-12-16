@@ -28,11 +28,11 @@ public:
     int getQuantidade() const;
     string getCondicao() const;
     
-    // Retorna referência para podermos ver a fila sem copiar
+  
     const FilaDeEspera& getFilaEspera() const;
 
-    // Métodos de negócio
-    bool solicitarItem(Usuario* u); // Recebe ponteiro
+ 
+    bool solicitarItem(Usuario* u);
     void devolverItem();
     void imprimir();
 };

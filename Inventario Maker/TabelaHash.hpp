@@ -3,7 +3,7 @@
 
 #include "Itens.hpp"
 
-// Nó para o encadeamento externo da Hash
+
 struct NoTabela {
     Itens item;
     NoTabela* proximo;
