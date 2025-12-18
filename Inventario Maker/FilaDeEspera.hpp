@@ -21,7 +21,7 @@ public:
 
     void inserir(Usuario* u);
     Usuario* remover();       
-    bool vazia() const;
+    bool estaVazia() const;
     bool estaCheio() const;
     void imprimir() const;
 };

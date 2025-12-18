@@ -5,7 +5,9 @@
 
 using namespace std;
 
-enum TipoUsuario { ALUNO, DOCENTE };
+enum TipoUsuario {
+     ALUNO, DOCENTE 
+};
 
 class Usuario {
 private:

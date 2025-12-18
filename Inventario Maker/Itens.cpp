@@ -16,19 +16,15 @@ Itens::Itens(int id, string nome, string cat, string loc, int qtd, string cond) 
 
 Itens::~Itens() {
 }
-
 int Itens::getId() const { 
     return id; 
 }
-
 string Itens::getNome() const { 
     return nome; 
 }
-
 string Itens::getCategoria() const { 
     return categoria; 
 }
-
 int Itens::getQuantidade() const { 
     return quantidade; 
 }
@@ -44,7 +40,7 @@ const FilaDeEspera& Itens::getFilaEspera() const {
 bool Itens::solicitarItem(Usuario* u) {
     if (quantidade > 0) {
         quantidade--;
-        cout << "Item retirado com sucesso por " << u->getNome() << "." << endl;
+        cout << "Item foi encontrado no estoque e foi retirado com sucesso pelo solicitante: -> " << u->getNome() << "." << endl;
         return true;
     } else {
         cout << "Sem estoque. " << u->getNome() << " entrou na fila de espera." << endl;
@@ -57,9 +53,9 @@ void Itens::devolverItem() {
     quantidade++;
     cout << "Item devolvido. Estoque atual: " << quantidade << endl;
 
-    if (!filaEspera.vazia()) {
+    if (!filaEspera.estaVazia()) {
         Usuario* proximo = filaEspera.remover();
-        if (proximo != NULL) {
+        if (proximo != nullptr) {
             cout << ">>> NOTIFICACAO: " << proximo->getNome() 
                  << ", o item '" << nome << "' ja esta disponivel para voce!" << endl;
 

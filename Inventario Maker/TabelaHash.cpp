@@ -4,26 +4,38 @@
 using namespace std;
 
 bool TabelaHash::ehPrimo(int n) const {
-    if (n <= 1) return false;
-    if (n == 2) return true;
-    if (n % 2 == 0) return false;
+    if (n <= 1){
+        return false;
+    } 
+    if (n == 2) {
+        return true;
+    }
+    if (n % 2 == 0) {
+        return false;
+    }
     for (int i = 3; i * i <= n; i += 2) {
-        if (n % i == 0) return false;
+        if (n % i == 0) {
+            return false;
+        }
     }
     return true;
 }
 
 int TabelaHash::proximoPrimo(int n) const {
-    if (n <= 1) return 2;
+    if (n <= 1) {
+        return 2;
+    }
     int primo = n;
     while (true) {
         primo++;
-        if (ehPrimo(primo)) return primo;
+        if (ehPrimo(primo)) {
+            return primo;
+        }
     }
 }
 
 int TabelaHash::funcaoHash(int chave) const {
-    return chave % tamanho;
+    return  chave % tamanho;
 }
 
 TabelaHash::TabelaHash(int tamInicial) {
@@ -34,14 +46,14 @@ TabelaHash::TabelaHash(int tamInicial) {
     }
     tabela = new NoTabela*[tamanho];
     for (int i = 0; i < tamanho; i++) {
-        tabela[i] = NULL;
+        tabela[i] = nullptr;
     }
 }
 
 TabelaHash::~TabelaHash() {
     for (int i = 0; i < tamanho; i++) {
         NoTabela* atual = tabela[i];
-        while (atual != NULL) {
+        while (atual != nullptr) {
             NoTabela* temp = atual;
             atual = atual->proximo;
             delete temp;
@@ -58,13 +70,13 @@ void TabelaHash::rehash() {
 
     tamanho = proximoPrimo(tamanho * 2);
     tabela = new NoTabela*[tamanho];
-    for (int i = 0; i < tamanho; i++) tabela[i] = NULL;
+    for (int i = 0; i < tamanho; i++) tabela[i] = nullptr;
     
     quantidadeItens = 0; 
 
     for (int i = 0; i < tamanhoAntigo; i++) {
         NoTabela* atual = tabelaAntiga[i];
-        while (atual != NULL) {
+        while (atual != nullptr) {
             inserir(atual->item);
             NoTabela* temp = atual;
             atual = atual->proximo;
@@ -76,11 +88,11 @@ void TabelaHash::rehash() {
 }
 
 void TabelaHash::inserir(const Itens& novoItem) {
-    
+        
     int indice = funcaoHash(novoItem.getId());
     
     NoTabela* atual = tabela[indice];
-    while(atual != NULL) {
+    while(atual != nullptr) {
         if(atual->item.getId() == novoItem.getId()) {
             cout << "Erro: Item ID " << novoItem.getId() << " ja existe." << endl;
             return;
@@ -101,23 +113,23 @@ void TabelaHash::inserir(const Itens& novoItem) {
 Itens* TabelaHash::buscar(int id) {
     int indice = funcaoHash(id);
     NoTabela* atual = tabela[indice];
-    while (atual != NULL) {
+    while (atual != nullptr) {
         if (atual->item.getId() == id) {
             return &(atual->item);
         }
         atual = atual->proximo;
     }
-    return NULL;
+    return nullptr;
 }
 
 bool TabelaHash::remover(int id) {
     int indice = funcaoHash(id);
     NoTabela* atual = tabela[indice];
-    NoTabela* anterior = NULL;
+    NoTabela* anterior = nullptr;
 
-    while (atual != NULL) {
+    while (atual != nullptr) {
         if (atual->item.getId() == id) {
-            if (anterior == NULL) {
+            if (anterior == nullptr) {
                 tabela[indice] = atual->proximo;
             } else {
                 anterior->proximo = atual->proximo;
@@ -137,7 +149,7 @@ void TabelaHash::listarPorCategoria(string categoria) {
     bool achou = false;
     for (int i = 0; i < tamanho; i++) {
         NoTabela* atual = tabela[i];
-        while (atual != NULL) {
+        while (atual != nullptr) {
             if (atual->item.getCategoria() == categoria) {
                 atual->item.imprimir();
                 achou = true;
@@ -153,7 +165,7 @@ void TabelaHash::imprimirTabela() {
     for (int i = 0; i < tamanho; i++) {
         cout << "[" << i << "]: ";
         NoTabela* atual = tabela[i];
-        while (atual != NULL) {
+        while (atual != nullptr) {
             cout << atual->item.getNome() << "(" << atual->item.getId() << ") -> ";
             atual = atual->proximo;
         }

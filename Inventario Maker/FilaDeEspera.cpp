@@ -1,23 +1,22 @@
 #include "FilaDeEspera.hpp"
 
 FilaDeEspera::FilaDeEspera() {
-    inicio = NULL;
-    fim = NULL;
+    inicio = nullptr;
+    fim = nullptr;
 }
 
-
 FilaDeEspera::FilaDeEspera(const FilaDeEspera& outra) {
-    inicio = NULL;
-    fim = NULL;
+    inicio = nullptr;
+    fim = nullptr;
     NoUsuario* atual = outra.inicio;
-    while (atual != NULL) {
+    while (atual != nullptr) {
         this->inserir(atual->usuario);
         atual = atual->proximo;
     }
 }
 
 FilaDeEspera::~FilaDeEspera() {
-    while (inicio != NULL) {
+    while (inicio != nullptr) {
         NoUsuario* temp = inicio;
         inicio = inicio->proximo;
         delete temp;
@@ -27,9 +26,9 @@ FilaDeEspera::~FilaDeEspera() {
 void FilaDeEspera::inserir(Usuario* u) {
     NoUsuario* novo = new NoUsuario();
     novo->usuario = u;
-    novo->proximo = NULL;
+    novo->proximo = nullptr;
 
-    if (fim == NULL) {
+    if (fim == nullptr) {
         inicio = novo;
         fim = novo;
     } else {
@@ -39,20 +38,20 @@ void FilaDeEspera::inserir(Usuario* u) {
 }
 
 Usuario* FilaDeEspera::remover() {
-    if (inicio == NULL) return NULL;
+    if (inicio == nullptr) return nullptr;
 
     NoUsuario* temp = inicio;
     Usuario* u = temp->usuario;
     inicio = inicio->proximo;
 
-    if (inicio == NULL) fim = NULL;
+    if (inicio == nullptr) fim = nullptr;
 
     delete temp;
     return u;
 }
 
-bool FilaDeEspera::vazia() const {
-    return inicio == NULL;
+bool FilaDeEspera::estaVazia() const {
+    return inicio == nullptr;
 }
 
 bool FilaDeEspera::estaCheio() const {
@@ -64,7 +63,7 @@ void FilaDeEspera::imprimir() const {
     if (!atual) {
         cout << " (Vazia)";
     }
-    while (atual != NULL) {
+    while (atual != nullptr) {
         cout << "[" << atual->usuario->getNome() << "] ";
         atual = atual->proximo;
     }

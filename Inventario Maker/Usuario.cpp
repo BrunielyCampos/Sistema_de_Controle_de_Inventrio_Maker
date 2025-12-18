@@ -1,5 +1,6 @@
 #include "Usuario.hpp"
 
+
 Usuario::Usuario(const string& cpf, const string& nome, const string& matricula, TipoUsuario tipo)
     : cpf(cpf), nome(nome), matricula(matricula), tipo(tipo) {
 
@@ -19,5 +20,11 @@ TipoUsuario Usuario::getTipo() const {
 }
 
 string Usuario::getTipoString() const {
-    return (tipo == ALUNO) ? "Aluno" : "Docente";
+    if (tipo == ALUNO) {
+        return "Aluno";
+    } else {
+        return "Docente";
+    }
+    
+   // return (tipo == ALUNO) ? "Aluno" : "Docente";
 }

@@ -7,8 +7,8 @@
 struct NoTabela {
     Itens item;
     NoTabela* proximo;
-
-    NoTabela(Itens i) : item(i), proximo(NULL) {}
+    NoTabela(Itens i) : item(i), proximo(nullptr) {
+    }
 };
 
 class TabelaHash {
