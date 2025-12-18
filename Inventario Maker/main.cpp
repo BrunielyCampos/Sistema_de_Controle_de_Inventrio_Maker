@@ -83,9 +83,10 @@ int main() {
     tabelaTeste.inserir(Itens(16, "Multrimetro", "Eletronica", "Armario B", 1, "Usado"));
     tabelaTeste.inserir(Itens(15, "Impressora termica", "Eletronica", "Armario D", 1, "Usado"));
     tabelaTeste.inserir(Itens(11, "Placa Raspberry Pi 4", "Eletronica", "Armario D", 1, "Usado"));
-    tabelaTeste.inserir(Itens(12, "Cortadora a Laser CO2", "Eletronica", "Armario B", 1, "Novo"));
+    tabelaTeste.inserir(Itens(5, "Cortadora a Laser CO2", "Eletronica", "Armario B", 1, "Novo"));
     cout<<"Tabela Redimencionada: "<<endl;
     tabelaTeste.imprimirTabela();
+    cout<<"\n";
 
 
     
