@@ -4,11 +4,19 @@
 using namespace std;
 
 bool TabelaHash::ehPrimo(int n) const {
-    if (n <= 1) return false;
-    if (n == 2) return true;
-    if (n % 2 == 0) return false;
+    if (n <= 1){
+       return false; 
+    } 
+    if (n == 2) {
+        return true;
+    }
+    if (n % 2 == 0){
+        return false;
+    }
     for (int i = 3; i * i <= n; i += 2) {
-        if (n % i == 0) return false;
+        if (n % i == 0) {
+            return false;
+        }
     }
     return true;
 }
@@ -119,7 +127,8 @@ bool TabelaHash::remover(int id) {
         if (atual->item.getId() == id) {
             if (anterior == NULL) {
                 tabela[indice] = atual->proximo;
-            } else {
+            } 
+            else {
                 anterior->proximo = atual->proximo;
             }
             delete atual;
@@ -145,7 +154,11 @@ void TabelaHash::listarPorCategoria(string categoria) {
             atual = atual->proximo;
         }
     }
-    if (!achou) cout << "Nenhum item encontrado." << endl;
+    if (!achou){ 
+        
+        cout << "Nenhum item encontrado." << endl;  
+    
+    }
 }
 
 void TabelaHash::imprimirTabela() {
